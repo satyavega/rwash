@@ -129,6 +129,52 @@ class ReportController extends Controller
 
         return $pdf->stream();
     }
+    public function printYearly(Request $request): Response
+    {
+    $yearInput = $request->input('year');
+
+    // Mengambil data transaksi untuk tahun yang dipilih
+    $transactions = Transaction::whereYear('created_at', $yearInput)
+        ->with('member')
+        ->get();
+
+    // Mengelompokkan data transaksi per member dan per bulan
+    $groupedData = [];
+    foreach ($transactions as $transaction) {
+        $memberId = $transaction->member->id;
+        $month = $transaction->created_at->format('F');
+
+        if (!isset($groupedData[$memberId][$month])) {
+            $groupedData[$memberId][$month] = [
+                'total_amount' => 0,
+                'transactions_count' => 0
+            ];
+        }
+
+        $groupedData[$memberId][$month]['total_amount'] += $transaction->total;
+        $groupedData[$memberId][$month]['transactions_count']++;
+    }
+
+    // Menghitung total pendapatan dan jumlah transaksi untuk tahun tersebut
+    $revenue = $transactions->sum('total');
+    $transactionsCount = $transactions->count();
+
+    // Membuat PDF
+    $pdf = PDF::loadview(
+        'admin.report_pdf_tahunan', // Gunakan view yang berbeda untuk laporan tahunan
+        compact(
+            'yearInput',
+            'revenue',
+            'transactionsCount',
+            'groupedData',
+            'transactions'
+        )
+    );
+
+    return $pdf->stream();
+}
+
+
 
     /**
      * Get month by year report

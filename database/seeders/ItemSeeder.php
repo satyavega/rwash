@@ -51,6 +51,5 @@ class ItemSeeder extends Seeder
             ['name' => 'Tas L', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Tas Travel', 'created_at' => now(), 'updated_at' => now()],
         ]);
-
     }
 }

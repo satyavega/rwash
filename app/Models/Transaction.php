@@ -72,6 +72,12 @@ class Transaction extends Model
     {
         return $this->belongsTo(ServiceType::class);
     }
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'item_transactions', 'item_id','transaction_id')
+                    ->withPivot('quantity')
+                    ->withTimestamps();
+    }
 
     /**
      * Get formatted number of total

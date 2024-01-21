@@ -23,7 +23,12 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             ServiceSeeder::class,
             ItemSeeder::class,
-            ServiceTypeSeeder::class
+            ServiceTypeSeeder::class,
+            PriceListSeeder::class,
+            VoucherSeeder::class,
+            UserVoucherSeeder::class,
+            TransactionSeeder::class,
+            TransactionDetailSeeder::class,
         ]);
     }
 }

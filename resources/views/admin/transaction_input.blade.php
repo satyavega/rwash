@@ -59,16 +59,30 @@
                                             @endforeach
                                         </select>
                                     </div>
-
+                                </div>
+                                <div class="form-group row">
+                                    <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" id="kategori" name="category">
+                                            <option value="satuan">Satuan</option>
+                                            <option value="kiloan">Kiloan</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="barang" class="col-sm-2 col-form-label">Barang</label>
                                     <div class="col-sm-4">
-                                        <select class="form-control" id="barang" name="item">
+                                        <div id="barang">
                                             @foreach ($items as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                <div class="form-check item-checkbox" data-category="{{ $item->category }}">
+                                                    <input class="form-check-input" type="checkbox" name="items[]" value="{{ $item->id }}" id="item-{{ $item->id }}">
+                                                    <label class="form-check-label" for="item-{{ $item->id }}">
+                                                        {{ $item->name }}
+                                                    </label>
+                                                </div>
                                             @endforeach
-                                        </select>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -77,16 +91,6 @@
                                         <select class="form-control" id="servis" name="service">
                                             @foreach ($services as $service)
                                                 <option value="{{ $service->id }}">{{ $service->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
-                                    <div class="col-sm-4">
-                                        <select class="form-control" id="kategori" name="category">
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -154,6 +158,23 @@
 @endsection
 
 @section('scripts')
+<script>
+    $(document).ready(function() {
+        // Contoh ketika formulir disubmit
+        $('#form-id').submit(function(e) {
+            e.preventDefault();
+
+            let selectedItems = [];
+            $("#barang .form-check-input:checked").each(function() {
+                selectedItems.push($(this).val());
+            });
+
+            // Lakukan sesuatu dengan nilai selectedItems
+            console.log(selectedItems);
+        });
+    });
+</script>
+
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>

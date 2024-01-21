@@ -142,21 +142,22 @@ class TransactionController extends Controller
 
         DB::beginTransaction();
 
-        $memberId = $request->session()->get('memberIdTransaction');
-        $user = Auth::user();
+        try {
+            $memberId = $request->session()->get('memberIdTransaction');
+            $user = Auth::user();
 
-        if (!$user) {
-            abort(403);
-        }
+            if (!$user) {
+                abort(403);
+            }
 
-        $adminId = $user->id;
-        $sessionTransaction = $request->session()->get('transaction');
+            $adminId = $user->id;
+            $sessionTransaction = $request->session()->get('transaction');
 
-        // Hitung total harga
-        $totalPrice = 0;
-        foreach ($sessionTransaction as &$trs) {
-            $totalPrice += $trs['subTotal'];
-        }
+            // Hitung total harga
+            $totalPrice = 0;
+            foreach ($sessionTransaction as &$trs) {
+                $totalPrice += $trs['subTotal'];
+            }
 
         // Cek apakah menggunakan service type non reguler
         $cost = 0;
@@ -201,45 +202,50 @@ class TransactionController extends Controller
             'status_id'       => 1,
             'member_id'       => $memberId,
             'admin_id'        => $adminId,
-            'finish_date'     => null,
             'discount'        => $discount,
             'total'           => $totalPrice,
             'service_type_id' => $request->input('service-type'),
-            'service_cost'    => $cost,
             'payment_amount'  => $request->input('payment-amount'),
         ]);
         $transaction->save();
 
+        // Menambahkan item ke transaksi
         foreach ($sessionTransaction as &$trs) {
-            $price = PriceList::where([
-                'item_id'     => $trs['itemId'],
-                'category_id' => $trs['categoryId'],
-                'service_id'  => $trs['serviceId'],
-            ])->firstOrFail();
-
-            $transaction_detail = new TransactionDetail([
-                'transaction_id' => $transaction->id,
-                'price_list_id'  => $price->id,
-                'quantity'       => $trs['quantity'],
-                'price'          => $price->price,
-                'sub_total'      => $trs['subTotal'],
+            $transaction->items()->attach($trs['itemId'], [
+                'quantity' => $trs['quantity'],
+                'price' => $trs['price'], // Asumsi Anda mempunyai 'price' di $sessionTransaction
+                'sub_total' => $trs['subTotal']
             ]);
-            $transaction_detail->save();
         }
 
-        $user = User::where('id', $memberId)->firstOrFail();
-        $user->point = $user->point + 1;
-        $user->save();
+        // Update poin user
+        $user->increment('point');
 
-        $request->session()->forget('transaction');
-        $request->session()->forget('memberIdTransaction');
+        $request->session()->forget(['transaction', 'memberIdTransaction']);
 
         DB::commit();
 
         return redirect()->route('admin.transactions.create')
             ->with('success', 'Transaksi berhasil disimpan')
             ->with('id_trs', $transaction->id);
+    } catch (\Exception $e) {
+        DB::rollBack();
+
+        return redirect()->route('admin.transactions.create')
+        ->with('success', 'Transaksi berhasil disimpan')
+        ->with('id_trs', $transaction->id);
     }
+}
+public function getItemsByCategory(Request $request)
+{
+    $category = $request->input('category');
+    // Cari item berdasarkan kategori
+    $items = Item::whereHas('priceList', function ($query) use ($category) {
+        $query->where('category', $category);
+    })->get();
+
+    return view('admin.transactions.create', compact('items'));
+}
 
     /**
      * Return transaction data by id

@@ -76,6 +76,8 @@ Route::group([
     Route::get('/', [ReportController::class, 'index'])->name('index');
     Route::post('/print', [ReportController::class, 'print'])->name('print');
     Route::post('/get-month', [ReportController::class, 'getMonth'])->name('get-month');
+    Route::post('/print-yearly', [ReportController::class, 'printYearly'])->name('printYearly');
+
 });
 
 // Route::get('/laporanview', 'laporanview');

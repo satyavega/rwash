@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('finish_date')->nullable();
             $table->integer('discount');
             $table->integer('total');
+            $table->integer('change')->nullable();
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('users');

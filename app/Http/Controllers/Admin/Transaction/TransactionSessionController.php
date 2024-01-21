@@ -30,6 +30,7 @@ class TransactionSessionController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        dd($request->all());
         $inputData = $request->validate([
             'item'      => ['required'],
             'service'   => ['required'],
@@ -37,6 +38,7 @@ class TransactionSessionController extends Controller
             'member-id' => [Rule::requiredIf(!$request->session()->has('memberIdTransaction'))],
             'quantity'  => ['required'],
         ]);
+        // dd($inputData);
 
         // Make sure input data member id is not empty
         $inputData['member-id'] = $inputData['member-id'] ?? $request->session()->get('memberIdTransaction');
@@ -75,45 +77,35 @@ class TransactionSessionController extends Controller
 
         // make new transaction row to store in session
         $rowId = md5($inputData['member-id'] . serialize($inputData['item']) . serialize($inputData['service']) . serialize($inputData['category']));
-        $data = [
-            $rowId => [
-                'itemId'       => $inputData['item'],
-                'itemName'     => $itemName,
-                'categoryId'   => $inputData['category'],
-                'categoryName' => $categoryName,
-                'serviceId'    => $inputData['service'],
-                'serviceName'  => $serviceName,
-                'quantity'     => $inputData['quantity'],
-                'subTotal'     => $subTotal,
-                'rowId'        => $rowId
-            ]
+        $newData = [
+            'itemId'       => $inputData['item'],
+            'itemName'     => $itemName,
+            'categoryId'   => $inputData['category'],
+            'categoryName' => $categoryName,
+            'serviceId'    => $inputData['service'],
+            'serviceName'  => $serviceName,
+            'quantity'     => $inputData['quantity'],
+            'subTotal'     => $subTotal,
+            'rowId'        => $rowId
         ];
 
-        // Check if there is no transaction session, create new session
-        if (!$request->session()->has('transaction') && !$request->session()->has('memberIdTransaction')) {
-            $request->session()->put('transaction', $data);
-            $request->session()->put('memberIdTransaction', $inputData['member-id']);
+        if (!$request->session()->has('transaction')) {
+            $request->session()->put('transaction', [$rowId => $newData]);
         } else {
-            $exist = 0;
             $sessionTransaction = $request->session()->get('transaction');
-
-            // Check if there is a same transaction. If exist, just increment the quantity and subtotal
-            foreach ($sessionTransaction as &$transaction) {
-                if ($transaction['itemId'] == $inputData['item'] && $transaction['categoryId'] == $inputData['category'] && $transaction['serviceId'] == $inputData['service']) {
-                    $transaction['quantity'] += $inputData['quantity'];
-                    $transaction['subTotal'] += $subTotal;
-                    $exist++;
-                }
-            }
-
-            // check if there is no same transaction, then insert new transaction to current transaction session
-            if ($exist == 0) {
-                $newSessionTransaction = array_merge_recursive($sessionTransaction, $data);
-                $request->session()->put('transaction', $newSessionTransaction);
+            // Jika item dengan rowId yang sama sudah ada, tambahkan kuantitas dan subtotal
+            if (isset($sessionTransaction[$rowId])) {
+                $sessionTransaction[$rowId]['quantity'] += $inputData['quantity'];
+                $sessionTransaction[$rowId]['subTotal'] += $subTotal;
             } else {
-                $request->session()->put('transaction', $sessionTransaction);
+                // Tambahkan item baru ke transaksi
+                $sessionTransaction[$rowId] = $newData;
             }
+            $request->session()->put('transaction', $sessionTransaction);
         }
+
+        // Pastikan memberIdTransaction juga tersimpan di sesi
+        $request->session()->put('memberIdTransaction', $inputData['member-id']);
 
         return redirect()->route('admin.transactions.create');
     }

@@ -16,6 +16,12 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <!-- Google Font: Nunito -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+        <!-- Select2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
+
+        <!-- Select2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+
     @yield('css')
     @routes('admin')
     <style>
@@ -37,8 +43,10 @@
             display: flex;
             justify-content: flex-end;
         }
-
-    </style>
+        #items-container {
+            display: none;
+        }
+</style>
 
 
 </head>
@@ -93,7 +101,37 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('vendor/adminlte/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/myscript.js') }}"></script>
+{{-- <script>
+$(document).ready(function() {
+    $('#kategori').on('change', function() {
+        var selectedCategory = $(this).val();
 
+        if (selectedCategory) {
+            $.ajax({
+                url: '/get-items',
+                type: 'GET',
+                data: { category: selectedCategory },
+                success: function(response) {
+                    $('#items-container').html(response).show();
+                }
+            });
+        } else {
+            $('#items-container').hide();
+        }
+    });
+});
+    $(document).ready(function() {
+        $('#kategori').on('change', function() {
+            var selectedCategory = $(this).val();
+
+            $('.item-checkbox').hide(); // Sembunyikan semua checkbox terlebih dahulu
+
+            if (selectedCategory) {
+                $('.item-checkbox[data-category="' + selectedCategory + '"]').show();
+            }
+        });
+    });
+</script> --}}
     @yield('scripts')
 
     @stack('js')

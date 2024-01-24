@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Laporan Keuangan</h1>
+                    <h1 class="m-0 text-dark text-bold">Laporan Keuangan</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -22,6 +22,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <h3 class="m-3 text-dark">Laporan Bulanan</h3>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-5">
@@ -62,6 +63,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <h3 class="m-3 text-dark">Laporan Tahunan</h3>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-5">
@@ -92,7 +94,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Laporan Transaksi</h1>
+                    <h1 class="m-0 text-dark text-bold">Laporan Transaksi</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -149,13 +151,6 @@ var myChartDaily = new Chart(ctxDaily, {
     },
     options: {}
 });
-// let formcetak = document.getElementById('form-cetak');
-
-// let cetakBtn = document.getElementById('btn-cetak');
-// cetakBtn.onclick = ()=> {
-//     formcetak.submit();
-// }
-
 </script>
 <script src="{{ asset('js/ajax.js') }}"></script>
 @endsection

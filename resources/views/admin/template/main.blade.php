@@ -26,10 +26,10 @@
     @routes('admin')
     <style>
         .vertical-divider {
-            border-right: 1px solid #ddd; /* Warna dan style garis sesuaikan kebutuhan Anda */
+            border-right: 1px solid #ddd;
             height: 100%;
-            margin-top: 15px; /* Sesuaikan jarak antara chart dengan pembatas */
-            margin-bottom: 15px; /* Sesuaikan jarak antara chart dengan pembatas */
+            margin-top: 15px;
+            margin-bottom: 15px;
         }
         .modal-header-info {
             display: flex;
@@ -101,37 +101,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('vendor/adminlte/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/myscript.js') }}"></script>
-{{-- <script>
-$(document).ready(function() {
-    $('#kategori').on('change', function() {
-        var selectedCategory = $(this).val();
 
-        if (selectedCategory) {
-            $.ajax({
-                url: '/get-items',
-                type: 'GET',
-                data: { category: selectedCategory },
-                success: function(response) {
-                    $('#items-container').html(response).show();
-                }
-            });
-        } else {
-            $('#items-container').hide();
-        }
-    });
-});
-    $(document).ready(function() {
-        $('#kategori').on('change', function() {
-            var selectedCategory = $(this).val();
-
-            $('.item-checkbox').hide(); // Sembunyikan semua checkbox terlebih dahulu
-
-            if (selectedCategory) {
-                $('.item-checkbox[data-category="' + selectedCategory + '"]').show();
-            }
-        });
-    });
-</script> --}}
     @yield('scripts')
 
     @stack('js')

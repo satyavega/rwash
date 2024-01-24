@@ -11,10 +11,8 @@ class UserVoucherSeeder extends Seeder
 {
     public function run()
     {
-        // Mendapatkan semua voucher
         $vouchers = Voucher::all();
 
-        // Mengaitkan setiap voucher dengan user id 2-9
         foreach ($vouchers as $voucher) {
             foreach (range(2, 9) as $userId) {
                 UserVoucher::create([

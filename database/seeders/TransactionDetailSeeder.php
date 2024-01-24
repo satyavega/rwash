@@ -9,18 +9,15 @@ use App\Models\PriceList;
 
 class TransactionDetailSeeder extends Seeder
 {
-        public function run()
+    public function run()
     {
-        // Ambil semua transaksi yang ada
         $transactions = Transaction::all();
 
         foreach ($transactions as $transaction) {
-            // Jumlah detail per transaksi, misalnya 3
             for ($i = 0; $i < 3; $i++) {
-                // Pilih price list secara acak
                 $priceList = PriceList::inRandomOrder()->first();
-                $quantity = rand(1, 5); // Contoh kuantitas acak
-                $price = $priceList->price; // Asumsi setiap price list memiliki field harga
+                $quantity = rand(1, 5);
+                $price = $priceList->price;
                 $subTotal = $quantity * $price;
 
                 TransactionDetail::create([

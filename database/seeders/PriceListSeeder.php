@@ -52,7 +52,7 @@ class PriceListSeeder extends Seeder
             'Setrika' => 2000,
             'Cuci + Lipat' => 4000,
             'Cuci + Setrika' => 6000,
-            'Cuci' => 0, // Tidak ada penambahan harga untuk Cuci
+            'Cuci' => 0,
         ];
 
         foreach ($prices as $itemData) {

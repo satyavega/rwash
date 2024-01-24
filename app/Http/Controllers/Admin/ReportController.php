@@ -32,7 +32,7 @@ class ReportController extends Controller
 
         $dataChartMonthly = [];
         foreach ($data as $month => $transactions) {
-            $dataChartMonthly[$month] = count($transactions); // Menghitung jumlah transaksi per bulan
+            $dataChartMonthly[$month] = count($transactions);
         }
 
 
@@ -52,11 +52,6 @@ class ReportController extends Controller
             }
             $dateLabelsMonthly = array_reverse($dateLabelsMonthly);
 
-
-            // Kode lain untuk pengolahan data Anda
-
-
-        // Tambahkan kode berikut untuk membuat array label tanggal harian
         $dateLabelsDaily = [];
         for ($day = 1; $day <= now()->daysInMonth; $day++) {
             $dateLabelsDaily[] = date('Y-m-d', strtotime(now()->year . '-' . now()->month . '-' . $day));
@@ -133,12 +128,10 @@ class ReportController extends Controller
     {
     $yearInput = $request->input('year');
 
-    // Mengambil data transaksi untuk tahun yang dipilih
     $transactions = Transaction::whereYear('created_at', $yearInput)
         ->with('member')
         ->get();
 
-    // Mengelompokkan data transaksi per member dan per bulan
     $groupedData = [];
     foreach ($transactions as $transaction) {
         $memberId = $transaction->member->id;
@@ -155,13 +148,12 @@ class ReportController extends Controller
         $groupedData[$memberId][$month]['transactions_count']++;
     }
 
-    // Menghitung total pendapatan dan jumlah transaksi untuk tahun tersebut
     $revenue = $transactions->sum('total');
     $transactionsCount = $transactions->count();
 
     // Membuat PDF
     $pdf = PDF::loadview(
-        'admin.report_pdf_tahunan', // Gunakan view yang berbeda untuk laporan tahunan
+        'admin.report_pdf_tahunan',
         compact(
             'yearInput',
             'revenue',

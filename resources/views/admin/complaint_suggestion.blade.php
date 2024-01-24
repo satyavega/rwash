@@ -36,20 +36,20 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($complaints as $testimoni)
-    <tr class="bg-warning">
-        <td>{{ $testimoni->user->name }}</td>
-        <td>
-            <button href="#" class="badge badge-info lihat-isi" data-id="{{ $testimoni->id }}">Lihat isi Testimoni</button>
-            @if (!is_null($testimoni->rating))
-                <span>
-                    @for ($i = 0; $i < $testimoni->rating; $i++)
-                        ☆
-                    @endfor
-                </span>
-            @endif
-        </td>
-    </tr>
-@endforeach
+                                            <tr class="bg-warning">
+                                                <td>{{ $testimoni->user->name }}</td>
+                                                <td>
+                                                    <button href="#" class="badge badge-info lihat-isi" data-id="{{ $testimoni->id }}">Lihat isi Testimoni</button>
+                                                    @if (!is_null($testimoni->rating))
+                                                    <span>
+                                                        @for ($i = 0; $i < $testimoni->rating; $i++)
+                                                        ☆
+                                                        @endfor
+                                                    </span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                             @foreach ($suggestions as $suggestion)
                                                 <tr>
                                                     <td>{{ $suggestion->user->name }}</td>

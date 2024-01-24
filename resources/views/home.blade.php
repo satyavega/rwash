@@ -270,7 +270,7 @@
           <div class="swiper-wrapper">
             @foreach($complaints as $testimonial)
             <div class="swiper-slide">
-                <div class="testimonial-item">
+                <div class="testimonial-item ">
                     <p>
                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                         {{ $testimonial->body }}
@@ -278,6 +278,9 @@
                     </p>
                         <img src="{{ asset('storage/images/' . $testimonial->user->profile_picture) }}" class="rounded-circle object-fit-cover" alt="" style="width: 150px; height: 150px;">
                     <h3>{{ $testimonial->user->name }}</h3>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
                 </div>
             </div>
             <!-- End testimonial item -->

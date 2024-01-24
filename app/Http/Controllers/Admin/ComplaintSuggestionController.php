@@ -35,26 +35,24 @@ class ComplaintSuggestionController extends Controller
         return view('admin.complaint_suggestion', compact('user', 'suggestions', 'complaints', 'count'));
     }
     public function store(Request $request)
-{
-$request->validate([
-'type' => 'required|in:1,2',
-'body' => 'required|string',
-'rating' => 'nullable|numeric|min:1|max:5',
-]);
-$complaintSuggestion = new ComplaintSuggestion();
-$complaintSuggestion->user_id = Auth::id();
-$complaintSuggestion->type = $request->type;
-$complaintSuggestion->body = $request->body;
+    {
+        $request->validate([
+            'type' => 'required|in:1,2',
+            'body' => 'required|string',
+            'rating' => 'nullable|numeric|min:1|max:5',
+        ]);
+        $complaintSuggestion = new ComplaintSuggestion();
+        $complaintSuggestion->user_id = Auth::id();
+        $complaintSuggestion->type = $request->type;
+        $complaintSuggestion->body = $request->body;
 
-// Hanya simpan rating jika tipe adalah Testimoni (2)
-if ($request->type == 2 && $request->has('rating')) {
-    $complaintSuggestion->rating = $request->rating;
-}
+        if ($request->type == 2 && $request->has('rating')) {
+            $complaintSuggestion->rating = $request->rating;
+        }
+        $complaintSuggestion->save();
 
-$complaintSuggestion->save();
-
-return redirect()->back()->with('success', 'Terima kasih atas feedback Anda!');
-}
+        return redirect()->back()->with('success', 'Terima kasih atas feedback Anda!');
+    }
 
 
     /**

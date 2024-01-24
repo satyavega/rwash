@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 return new class extends Migration
 {
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('member_id');
             $table->timestamp('finish_date')->nullable();
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->integer('total');
             $table->integer('change')->nullable();
             $table->timestamps();

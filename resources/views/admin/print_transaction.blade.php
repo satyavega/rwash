@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                             <td colspan="6" class="text-center"><b>Potongan</b></td>
-                            <td>- {{ $transaction->discount }}</td>
+                            <td>- {{ 'Rp ' . number_format($transaction->discount, 0, ',', '.') }}</td>
                         </tr>
                         <tr>
                             <td colspan="6" class="text-center"><b>Total</b></td>

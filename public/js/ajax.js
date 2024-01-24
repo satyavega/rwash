@@ -81,12 +81,13 @@ $(document).on("change", "#tahun", function () {
         method: "POST",
         dataType: "json",
         success: function (data) {
+            const bulan = ['', 'Januari', 'Februari', 'maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             $.each(data, function (i, val) {
                 option +=
                     '<option value="' +
                     val.Bulan +
                     '">' +
-                    val.Bulan +
+                    bulan[val.Bulan] +
                     "</option>";
             });
             $("#bulan").html(option);

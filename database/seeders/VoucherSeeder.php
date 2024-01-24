@@ -21,13 +21,13 @@ class VoucherSeeder extends Seeder
                 'name' => 'Diskon Rp 25.000',
                 'discount_value' => 25000,
                 'point_need' => 40,
-                'description' => 'Dapatkan diskon Rp 25.000 untuk setiap pembelian di atas Rp 250.000',
+                'description' => 'Dapatkan diskon Rp 25.000 untuk pembelian apa pun',
             ],
             [
                 'name' => 'Diskon Rp 50.000',
                 'discount_value' => 50000,
                 'point_need' => 65,
-                'description' => 'Dapatkan diskon Rp 50.000 untuk setiap pembelian di atas Rp 500.000',
+                'description' => 'Dapatkan diskon Rp 50.000 untuk pembelian apa pun',
             ],
         ];
 

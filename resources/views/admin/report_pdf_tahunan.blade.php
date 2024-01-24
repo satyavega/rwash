@@ -60,7 +60,6 @@
                                         </tr>
                                     @endforeach
                                 @endforeach
-                                <!-- Baris Total -->
                                 <tr>
                                     <td colspan="6"><hr></td>
                                 </tr>

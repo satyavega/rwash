@@ -70,7 +70,7 @@
                             <table id="tbl-transaksi-priority" class="table dt-responsive nowrap" style="width: 100%">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>ID Transaksi</th>
+                                        <th>No Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Nama Member</th>
                                         <th>Status</th>
@@ -82,7 +82,7 @@
                                 <tbody>
                                     @foreach ($ongoingPriorityTransactions as $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                             <td>{{ $item->member->name }}</td>
                                             <td>
@@ -128,7 +128,7 @@
                             <table id="tbl-transaksi-belum" class="table dt-responsive nowrap" style="width: 100%">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>ID Transaksi</th>
+                                        <th>No Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Nama Member</th>
                                         <th>Status</th>
@@ -140,7 +140,7 @@
                                 <tbody>
                                     @foreach ($ongoingTransactions as $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                             <td>{{ $item->member->name }}</td>
                                             <td>

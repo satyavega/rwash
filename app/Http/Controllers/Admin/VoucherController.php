@@ -38,7 +38,6 @@ class VoucherController extends Controller
             'point_need'     => ['required'],
         ]);
 
-        // Cek apakah potongan ada yang sama di database
         $voucherExists = Voucher::where('discount_value', $input['discount_value'])->exists();
 
         if ($voucherExists) {
@@ -46,7 +45,6 @@ class VoucherController extends Controller
                 ->with('error', 'Voucher potongan ' . $input['discount_value'] . ' sudah ada');
         }
 
-        // Masukkan potongan ke dalam tabel vouchers
         $voucher = new Voucher([
             'name'           => 'Potongan ' . number_format($input['discount_value'], 0, ',', '.'),
             'discount_value' => $input['discount_value'],
@@ -68,12 +66,10 @@ class VoucherController extends Controller
      */
     public function update(Voucher $voucher): JsonResponse
     {
-        // Jika 1 maka ubah ke 0
         if ($voucher->active_status == 1) {
             $voucher->active_status = 0;
             $voucher->save();
         } else {
-            // Ubah ke 1
             $voucher->active_status = 1;
             $voucher->save();
         }
@@ -82,7 +78,6 @@ class VoucherController extends Controller
     }
     public function destroy(Voucher $voucher): RedirectResponse
     {
-        // Hapus voucher
         $voucher->delete();
 
         return redirect()->route('admin.vouchers.index')->with('success', 'Voucher berhasil dihapus.');

@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'gender' => 'laki-laki',
                 'address' => 'Tokyo Shibuya',
                 'phone_number' => '022122833',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'hina@gmail.com',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
                 'gender' => 'perempuan',
                 'address' => 'Tokyo Saitama',
                 'phone_number' => '022122833',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'sen@gmail.com',
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
                 'gender' => 'perempuan',
                 'address' => 'Shinjuku',
                 'phone_number' => '0899219128',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'kotori@gmail.com',
@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                 'gender' => 'perempuan',
                 'address' => 'Saitama',
                 'phone_number' => '022122833',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'natsume@gmail.com',
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
                 'gender' => 'perempuan',
                 'address' => 'Harajuku',
                 'phone_number' => '012122833',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'yuki@gmail.com',
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
                 'gender' => 'laki-laki',
                 'address' => 'Shibuya',
                 'phone_number' => '02431833',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'ai@gmail.com',
@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
                 'gender' => 'perempuan',
                 'address' => 'Shibuya',
                 'phone_number' => '0891231313',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
             [
                 'email' => 'chuya@gmail.com',
@@ -102,7 +102,7 @@ class UserSeeder extends Seeder
                 'gender' => 'laki-laki',
                 'address' => 'Saitama',
                 'phone_number' => '0881231231',
-                'point' => '100',
+                'point' => rand(0, 100),
             ],
         ];
 

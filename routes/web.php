@@ -9,6 +9,9 @@ use App\Http\Controllers\Profile\ProfilePhotoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\ComplaintSuggestion;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Enums\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -22,11 +25,6 @@ use Illuminate\Support\Facades\View;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Home route
-// Route::get('/', function () {
-//     return view('landing');
-// });
 
 Route::get('/', function () {
     $user = Auth::user();
@@ -43,7 +41,13 @@ Route::get('/', function () {
 
     $count = ComplaintSuggestion::where('reply', '')->count();
 
-    return view('home', compact('user', 'suggestions', 'complaints', 'count'));
+    $user = Auth::user();
+
+    $totalMembers = User::where('role', Role::Member)->count();
+
+    $totalTransactions = Transaction::count();
+
+    return view('home', compact('user', 'suggestions', 'complaints', 'count','totalMembers','totalTransactions'));
 });
 
 Route::post('/logout', function () {

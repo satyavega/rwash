@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Ramsey\Uuid\Uuid;
 
 class Transaction extends Model
 {
@@ -89,6 +90,15 @@ class Transaction extends Model
         return 'Rp ' . number_format($this->total, 0, ',', '.');
     }
 
+    //Kode trans
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($transaction) {
+            $transaction->kode_transaksi = Uuid::uuid4()->toString();
+});
+    }
     /**
      * Get formatted number of payment amount
      *

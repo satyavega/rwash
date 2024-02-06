@@ -61,9 +61,11 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="" class="brand-link mt-2">
-                <i class="fas fa-tshirt brand-image mt-1 ml-3"></i>
-                <h4 class="brand-text text-center">{{ config('app.name') }}</h4>
+            <a href="" class="brand-link mt-2 d-flex justify-content-sm-start  ">
+                <i class="fas fa-tshirt brand-image"
+                style="margin-top: 5px"
+                ></i>
+                <h4 class="brand-text text-bold">{{ config('app.name') }}</h4>
             </a>
 
             <!-- Sidebar -->

@@ -20,8 +20,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-10">
+                                    @if($user->profile_picture && file_exists(public_path('storage/images/' . $user->profile_picture)))
                                     <img class="img-circle img-fit float-left" width="100" height="100"
                                     src="{{ asset('storage/images/' . $user->profile_picture) }}" alt="Foto Profil">
+                                    @else
+                    <img class="img-circle img-fit float-left" width="100" height="100" src="img/profile/pp-admin.png" alt="Default Foto Profil">
+                @endif
                                     <div class="member-content">
                                         <h2 class="m-0">{{ $user->name }}</h2>
                                         <p class="small m-0">ID Member: {{ $user->id }}</p>

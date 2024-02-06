@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->uuid('kode_transaksi')->unique();
             $table->foreignId('status_id')->constrained();
             $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('member_id');

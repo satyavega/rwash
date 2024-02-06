@@ -45,8 +45,12 @@
                                 @method('patch')
                                 <div class="row">
                                     <div class="col-md-4 text-center">
+                                        @if($user->profile_picture && file_exists(public_path('storage/images/' . $user->profile_picture)))
                                         <img id="profil_preview" class="img-fit img-circle" width="200" height="200"
                                         src="{{ asset('storage/images/' . $user->profile_picture) }}" alt="Foto Profil">
+                                        @else
+                        <img id="profil_preview" class="img-fit img-circle" width="200" height="200" src="img/profile/pp-admin.png" alt="Default Foto Profil">
+                    @endif
                                         <div class="form-group mt-3">
                                             <label for="foto_profil">Pilih Foto Profil</label>
                                             <div class="custom-file">

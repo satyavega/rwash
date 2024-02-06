@@ -212,20 +212,22 @@
     <section id="about-video" class="about-video">
       <div class="container" data-aos="fade-up">
         <div class="row align-items-center">
-            <div class="col-lg-6 video-box" data-aos="fade-right" data-aos-delay="100">
-                <img src="assets/img/testimonials/laundry-unsplash1.jpg" class="img-fluid rounded hover-zoom" alt="">
+            <div class="col-lg-6 video-box p-0 " data-aos="fade-right" data-aos-delay="100">
+                <img src="assets/img/testimonials/laundry-unsplash1.jpg" class="img-fluid hover-zoom" alt="">
             </div>
 
-            <div class="col-lg-6 content" data-aos="fade-left" data-aos-delay="100">
+            <div class="col-lg-6 content bg-secondary p-4" data-aos="fade-left" data-aos-delay="100">
                 <div>
                     <h2><strong>RWASH JARGONNYA???</strong></h2>
                 </div>
-                <ul style="font-size: 18px;">
-                    <li><i class="bx bx-check-double"></i> Kilauan Kebersihan, Sentuhan Kelembutan.</li>
-                    <li><i class="bx bx-check-double"></i> Ubah Rutinitas Menjadi Kenyamanan.</li>
-                    <li><i class="bx bx-check-double"></i> Ketika Kebersihan Bertemu Kemudahan, Itulah Kami.</li>
-                    <li><i class="bx bx-check-double"></i> Menjaga Kecerahan Warna, Menyempurnakan Hatimu.</li>
-                </ul>
+                <div class="">
+                    <ul style="font-size: 18px;">
+                        <li><i class="bx bx-check-double"></i> Kilauan Kebersihan, Sentuhan Kelembutan.</li>
+                        <li><i class="bx bx-check-double"></i> Ubah Rutinitas Menjadi Kenyamanan.</li>
+                        <li><i class="bx bx-check-double"></i> Ketika Kebersihan Bertemu Kemudahan, Itulah Kami.</li>
+                        <li><i class="bx bx-check-double"></i> Menjaga Kecerahan Warna, Menyempurnakan Hatimu.</li>
+                    </ul>
+                </div>
             </div>
 
         </div>

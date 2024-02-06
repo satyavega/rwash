@@ -13,9 +13,14 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <img class="img-circle img-fit mr-1" width="25" height="25" src="img/profile/pp-admin.png" alt="Foto Profil">
+                @if($user->profile_picture)
+                    <img class="img-circle img-fit mr-1" width="25" height="25" src="{{ asset('storage/images/' . $user->profile_picture) }}" alt="Foto Profil">
+                @else
+                    <img class="img-circle img-fit mr-1" width="25" height="25" src="img/profile/pp-admin.png" alt="Default Foto Profil">
+                @endif
                 {{ $user->name }}
             </a>
+
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                 <a href="{{ route('profile.index') }}" class="dropdown-item">
                     <i class="fas fa-user-edit mr-2"></i> Edit Profil

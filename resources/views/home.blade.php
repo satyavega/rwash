@@ -29,14 +29,39 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 <style>
-    /* .hover-zoom {
-  transition: transform 0.3s ease;
+#pricing {
+    background-image: url('{{ asset('assets/img/hero-bg.jpg') }}');
+    background-size: cover;
+    position: relative;
 }
 
-.hover-zoom:hover {
-  transform: scale(1.1);
-} */
+#pricing::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#pricing {
+    position: relative;
+    overflow: hidden; /* Agar overlay tidak keluar dari section */
+}
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Warna dan opasitas yang Anda inginkan */
+    z-index: 1; /* Letakkan di bawah gambar latar belakang */
+}
+
+#pricing .container {
+    position: relative;
+    z-index: 2; /* Letakkan di atas overlay */
+}
 </style>
 </head>
 
@@ -216,7 +241,7 @@
                 <img src="assets/img/testimonials/laundry-unsplash1.jpg" class="img-fluid hover-zoom" alt="">
             </div>
 
-            <div class="col-lg-6 content bg-secondary p-4" data-aos="fade-left" data-aos-delay="100">
+            <div class="col-lg-6 content p-4" data-aos="fade-left" data-aos-delay="100">
                 <div>
                     <h2><strong>RWASH JARGONNYA???</strong></h2>
                 </div>
@@ -365,6 +390,8 @@
     </section><!-- End Sevices Section -->
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
+        <div class="overlay"></div> <!-- Tambahkan overlay di dalam section -->
+
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">

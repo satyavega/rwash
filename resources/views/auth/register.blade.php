@@ -1,15 +1,15 @@
-@extends('auth.main')
+@extends('auth.mainauth')
 
 @section('title', config('app.name') . ' - ' . __('auth.reg_title'))
 
 @section('container')
     <div class="container" data-aos="fade-up">
         <div class="row justify-content-center">
-            <div class="col-lg-7" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card bg-light o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-5">
-                        <h3 class="text-center mb-3">@lang('auth.reg_title')</h3>
-                        @if (session('error'))
+            <div class="col-lg-5 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card login-card">
+                    <div class="card-body">
+                        <h3 class="card-title mt-2 mb-5 text-center"><span class="text-bold fw-bold">Register</span></h3>
+                        {{-- @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ session('error') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -30,11 +30,11 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        @endif --}}
                         <form action="" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">@lang('auth.name_label')</label>
+                                <label for="name">Nama</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                        id="name" name="name" placeholder="@lang('auth.name_placeholder')"
                                        value="{{ old('name') }}" required>
@@ -45,7 +45,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="email">@lang('auth.email_label')</label>
+                                <label for="name">Email</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" placeholder="@lang('auth.email_placeholder')"
                                     value="{{ old('email') }}" required>
@@ -56,7 +56,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="password">@lang('auth.password_label')</label>
+                                <label for="name">Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password" placeholder="@lang('auth.password_placeholder')" required>
                                 @error('password')
@@ -66,7 +66,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="password2">@lang('auth.confirm_password_label')</label>
+                                <label for="name">Konfirmasi Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password2" name="password_confirmation" placeholder="@lang('auth.confirm_password_placeholder')" required>
                                 @error('password')
@@ -75,7 +75,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <!-- Gender Field -->
+                            {{-- <!-- Gender Field -->
                             <div class="mb-3">
                                 <label for="gender" class="form-label">Gender</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender">
@@ -113,10 +113,12 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <!-- Submit Button -->
-                            <button class="btn btn-primary btn-block" type="submit">@lang('auth.reg_title')</button>
+                            <div class="form-group d-flex align-items-center justify-content-center mt-3">
+                                <button class="btn btn-primary mt-3 mb-2 " style="width: 85%" type="submit">@lang('auth.reg_title')</button>
+                            </div>
                         </form>
                         <hr>
                         <div class="text-center">

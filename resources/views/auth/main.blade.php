@@ -27,6 +27,13 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        #inner-page{
+  background: url("../img/hero-bg.jpg") top center;
+  background-size: cover;
+  position: relative;
+        }
+    </style>
   </head>
 
 <body>

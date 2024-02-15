@@ -1,4 +1,4 @@
-@extends('auth.main')
+@extends('auth.mainauth')
 
 @section('title', config('app.name') . ' - ' . __('auth.reg_title'))
 

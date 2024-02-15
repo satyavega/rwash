@@ -109,74 +109,16 @@
         <div class="d-flex justify-content-between align-items-center">
           <ol>
             <li><a href="/">Home</a></li>
-            <li>Login Page</li>
+            <li>Register Page</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page">
-        {{-- <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card bg-light o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-4">
-                            <h3 class="text-center mb-4 font-weight-bold">@lang('auth.log_title')</h3>
-
-                            <!-- Alert Messages -->
-                            @foreach(['error', 'warning', 'success'] as $msg)
-                                @if(session($msg))
-                                    <div class="alert alert-{{ $msg }} alert-dismissible fade show" role="alert">
-                                        {{ session($msg) }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-                            @endforeach
-
-                            <!-- Login Form -->
-                            <form action="" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="email" class="font-weight-bold">@lang('auth.email_label')</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        id="email" name="email" placeholder="@lang('auth.email_placeholder')"
-                                        value="{{ old('email') }}">
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="font-weight-bold">@lang('auth.password_label')</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="@lang('auth.password_placeholder')">
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                                    <label class="form-check-label" for="remember">@lang('auth.remember_me')</label>
-                                </div>
-                                <button class="btn btn-primary btn-block" type="submit">@lang('auth.log_title')</button>
-                            </form>
-
-                            <hr>
-
-                            <!-- Register Link -->
-                            <div class="text-center">
-                                <a href="{{ url('register') }}" class="text-decoration-none">@lang('auth.register_link')</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-    {{-- CGPT --}}
-
+    <section class="inner-page" style="background: url('{{ asset('assets/img/hero-bg.jpg') }}'); background-size: cover;">
+@yield('container')
+    </section>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

@@ -130,7 +130,8 @@
                             <table id="tbl-transaksi-belum" class="table dt-responsive nowrap" style="width: 100%">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>No Transaksi</th>
+                                        <th>No</th>
+                                        <th>Kode Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Nama Member</th>
                                         <th>Status</th>
@@ -143,6 +144,7 @@
                                     @foreach ($ongoingTransactions as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ strtoupper(substr($item->kode_transaksi, 0, 13)) }}</td>
                                             <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                             <td>{{ $item->member->name }}</td>
                                             <td>
@@ -189,6 +191,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>No</th>
+                                        <th>Kode Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Nama Member</th>
                                         <th>Status</th>
@@ -201,6 +204,7 @@
                                     @foreach ($finishedTransactions as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ strtoupper(substr($item->kode_transaksi, 0, 13)) }}</td>
                                             <td>{{ date('d F Y', strtotime($item->created_at)) }}</td>
                                             <td>{{ $item->member->name }}</td>
                                             <td>

@@ -6,6 +6,9 @@ use Database\Seeders\CategorySeeder;
 use Database\Seeders\StatusSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ServiceTypeSeeder;
+use Database\Seeders\ExpenseCategorySeeder;
+use Database\Seeders\ExpenseSeeder;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +32,8 @@ class DatabaseSeeder extends Seeder
             UserVoucherSeeder::class,
             TransactionSeeder::class,
             TransactionDetailSeeder::class,
+            ExpenseCategorySeeder::class,
+            ExpenseSeeder::class,
         ]);
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Transaction\PrintTransactionController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
 use App\Http\Controllers\Admin\Transaction\TransactionSessionController;
 use App\Http\Controllers\Admin\VoucherController;
+use App\Http\Controllers\Admin\ExpenseController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('index');
 
@@ -88,4 +89,14 @@ Route::group([
 ], function () {
     Route::get('/{serviceType}', [ServiceTypeController::class, 'show'])->name('show');
     Route::patch('/{serviceType}', [ServiceTypeController::class, 'update'])->name('update');
+});
+
+Route::group([
+    'prefix' => 'expenses',
+    'as' => 'expenses.',
+], function () {
+    Route::get('/', [ExpenseController::class, 'index'])->name('index');
+    Route::get('/create', [ExpenseController::class, 'create'])->name('create');
+    Route::post('/', [ExpenseController::class, 'store'])->name('store');
+    Route::get('/pdf', [ExpenseController::class, 'generatePDF'])->name('pdf');
 });

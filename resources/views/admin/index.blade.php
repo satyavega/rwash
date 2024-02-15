@@ -60,6 +60,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>No</th>
+                                        <th>Kode Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                     </tr>
@@ -68,6 +69,7 @@
                                     @foreach ($priorityTransactions as $transaction)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ strtoupper(substr($transaction->kode_transaksi, 0, 13)) }}</td>
                                             <td>{{ date('d F Y', strtotime($transaction->created_at)) }}</td>
                                             <td>
                                                 @if ($transaction->status_id != '3')
@@ -89,6 +91,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>No</th>
+                                        <th>Kode Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Status</th>
                                     </tr>
@@ -97,6 +100,8 @@
                                     @foreach ($recentTransactions as $transaction)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ strtoupper(substr($transaction->kode_transaksi, 0, 13)) }}</td>
+
                                             <td>{{ date('d F Y', strtotime($transaction->created_at)) }}</td>
                                             <td>
                                                 @if ($transaction->status_id != '3')

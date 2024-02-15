@@ -157,7 +157,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -281,7 +281,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #124265;
@@ -535,7 +535,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f8fbfe;
+    background-color: #f8fbfe;
 }
 
 .section-title {
@@ -561,6 +561,7 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+
 .about .content h3 {
   font-weight: 600;
   font-size: 26px;
@@ -648,6 +649,9 @@ section {
 /*--------------------------------------------------------------
 # About Video
 --------------------------------------------------------------*/
+#about-video{
+
+}
 .about-video .content {
   font-size: 15px;
 }

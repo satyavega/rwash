@@ -100,7 +100,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="alamat">Alamat</label>
-                                            <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                                            <input type="textarea" class="form-control @error('alamat') is-invalid @enderror"
                                                 id="alamat" name="address" placeholder="Masukkan alamat anda"
                                                 value="{{ $user->address }}">
                                             @error('alamat')

@@ -517,7 +517,7 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>laundryrwashofc@example.com</p>
+                <p>rwashofficial@gmail.com</p>
               </div>
 
               <div class="phone">
@@ -532,7 +532,9 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="" method="post" role="form" class="php-email-form">
+                {{ csrf_field() }}
+
               <div class="row gy-2 gx-md-3">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Nama Kamu" required>
@@ -576,7 +578,7 @@
             <p>
             Jl. Cagak no.6969, RT. 06, RW. 09, Sukabumi<br>
               <strong>Phone:</strong> +628 699669690<br>
-              <strong>Email:</strong> laundryrwashofc@example.com<br>
+              <strong>Email:</strong> rwashofficial@gmail.com<br>
             </p>
           </div>
 

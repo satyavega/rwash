@@ -10,7 +10,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.transactions.store') }}" method="post">
+                <form action="{{ route('member.transactions.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -55,11 +55,7 @@
                             <input type="number" class="form-control form-control-lg" id="input-bayar"
                                 name="payment-amount">
                         </div>
-                        <div class="form-group">
-                            <label for="kembalian">Kembalian</label>
-                            <input type="number" class="form-control form-control-lg" id="kembalian"
-                                name="change" disabled>
-                        </div>
+                        <h4>Kembalian : <span id="kembalian"></span></h4>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -70,78 +66,8 @@
         </div>
     </div>
 
-    {{-- @push('js')
+    @push('js')
+        <script src="{{ asset('js/quantity-increment.js') }}"></script>
         <script src="{{ asset('js/input-transaksi.js') }}"></script>
-    @endpush --}}
+    @endpush
 @endif
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const inputBayar = document.getElementById('input-bayar');
-        const kembalian = document.getElementById('kembalian');
-        const serviceType = document.getElementById('service-type');
-        const voucher = document.getElementById('voucher');
-
-        function updateTotalHarga() {
-            let totalHarga = parseFloat(document.getElementById('sub-total').value);
-
-            // Tambahkan biaya service type jika dipilih
-            const selectedServiceCost = parseFloat(serviceType.options[serviceType.selectedIndex].getAttribute('data-type-cost'));
-            if (!isNaN(selectedServiceCost)) {
-                totalHarga += selectedServiceCost;
-            }
-
-            // Kurangi biaya voucher jika dipilih
-            const selectedVoucherValue = parseFloat(voucher.options[voucher.selectedIndex].getAttribute('data-potong'));
-            if (!isNaN(selectedVoucherValue)) {
-                totalHarga -= selectedVoucherValue;
-            }
-
-            document.getElementById('total-harga').value = totalHarga >= 0 ? totalHarga : 0;
-
-            // Hitung kembalian
-            const bayar = parseFloat(inputBayar.value);
-            const kembalianValue = bayar - totalHarga;
-            kembalian.value = kembalianValue >= 0 ? kembalianValue : 0;
-        }
-
-        serviceType.addEventListener('change', updateTotalHarga);
-        voucher.addEventListener('change', updateTotalHarga);
-        inputBayar.addEventListener('input', updateTotalHarga);
-    });
-</script>
-
-{{-- <script>
-    let tempPotongan = 0;
-    let tempCost = 0;
-
-    $("#service-type").on("change", function () {
-        tempCost = parseInt($(this).find(":selected").data("type-cost")) || 0;
-        recalculateTotal();
-    });
-
-    $("#voucher").on("change", function () {
-        tempPotongan = parseInt($(this).find(":selected").data("potong")) || 0;
-        recalculateTotal();
-    });
-
-    function recalculateTotal() {
-        let subTotal = parseInt($("#sub-total").val()) || 0;
-        let fixTotal = subTotal - tempPotongan + tempCost;
-        fixTotal = Math.max(fixTotal, 0);
-        $("#total-harga").val(fixTotal);
-
-        updateChange();
-    }
-
-    $("#input-bayar").on("keyup", function () {
-        updateChange();
-    });
-
-    function updateChange() {
-        let paymentAmount = parseInt($("#input-bayar").val());
-        let fixTotal = parseInt($("#total-harga").val());
-        let change = paymentAmount - fixTotal;
-        change = Math.max(change, 0);
-        $("#kembalian").html(change);
-    }
-</script> --}}

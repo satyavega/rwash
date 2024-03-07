@@ -88,7 +88,6 @@ class TransactionSessionController extends Controller
                 'rowId'        => $rowId
             ]
         ];
-
         // Check if there is no transaction session, create new session
         if (!$request->session()->has('transaction') && !$request->session()->has('memberIdTransaction')) {
             $request->session()->put('transaction', $data);

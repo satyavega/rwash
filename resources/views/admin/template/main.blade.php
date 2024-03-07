@@ -62,7 +62,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="" class="brand-link mt-2 d-flex justify-content-sm-start  ">
+            <a href="/" class="brand-link mt-2 d-flex justify-content-sm-start  ">
                 <i class="fas fa-tshirt brand-image"
                 style="margin-top: 5px"
                 ></i>

@@ -80,3 +80,6 @@ Route::group([
 
 // Set language route
 Route::get('/{locale}', LocaleController::class);
+
+Route::get('/', 'ContactController@showContactForm');
+Route::post('/contact', 'ContactController@sendMail');

@@ -22,6 +22,7 @@ class Transaction extends Model
         'service_type_id',
         'service_cost',
         'payment_amount',
+        'change'
     ];
 
     /**
@@ -97,8 +98,12 @@ class Transaction extends Model
 
         static::creating(function ($transaction) {
             $transaction->kode_transaksi = Uuid::uuid4()->toString();
-});
+
+            // Hitung kembalian
+            $transaction->change = $transaction->payment_amount - $transaction->total;
+        });
     }
+
     /**
      * Get formatted number of payment amount
      *

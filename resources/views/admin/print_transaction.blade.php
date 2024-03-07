@@ -20,7 +20,7 @@
         <hr>
         <div class="row">
             <div class="col-6">
-                <p>No Transaksi: {{ $transaction->id }}</p>
+                <p>Kode Transaksi: {{ (strtoupper($transaction->kode_transaksi)) }}</p>
             </div>
             <div class="col-6 text-right">
                 <p>{{ date('d F Y', strtotime($transaction->created_at)) }}</p>
@@ -80,6 +80,10 @@
                         <tr>
                             <td colspan="6" class="text-center"><b>Dibayar</b></td>
                             <td><b>{{ $transaction->getFormattedPaymentAmount() }}</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-center"><b>Kembalian</b></td>
+                            <td><b>{{ 'Rp ' . number_format($transaction->change, 0, ',', '.') }}</b></td>
                         </tr>
                     </tbody>
                 </table>

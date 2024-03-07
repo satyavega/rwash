@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             TransactionDetailSeeder::class,
             ExpenseCategorySeeder::class,
             ExpenseSeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

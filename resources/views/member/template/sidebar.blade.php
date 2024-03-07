@@ -19,7 +19,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('member.transactions.index') }}"
-                    class="nav-link {{ request()->routeIs('member.transactions*') ? 'active' : '' }}">
+                    class="nav-link {{ request()->routeIs('member.transactions.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-history"></i>
                     <p>Riwayat Transaksi</p>
                 </a>

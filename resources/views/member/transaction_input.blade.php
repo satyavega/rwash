@@ -1,4 +1,4 @@
-@extends('admin.template.main')
+@extends('member.template.main')
 
 @section('css')
     <link href="{{ asset('vendor/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -45,27 +45,14 @@
                     @endif
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('admin.transactions.session.store') }}" method="post">
+                            <form action="{{ route('member.transactions.store') }}" method="post">
                                 @csrf
-                                <div class="form-group row">
-                                    <label for="id-member" class="col-sm-2 col-form-label">Nama Member</label>
-                                    <div class="col-sm-4">
-                                        <select class="form-control" id="id-member" name="member-id"
-                                                @if (isset($memberIdSessionTransaction)) disabled title="Harap selesaikan transaksi yang ada untuk mengganti id member" @endif
-                                                required>
-                                            <option value="">Pilih Member</option>
-                                            @foreach ($members as $member)
-                                                <option value="{{ $member->id }}" {{ (isset($memberIdSessionTransaction) && $memberIdSessionTransaction == $member->id) ? 'selected' : '' }}>{{ $member->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="form-group row">
                                     <label for="barang" class="col-sm-2 col-form-label">Barang</label>
                                     <div class="col-sm-4">
-                                        <select class="form-control" id="barang" name="item">
+                                        <select class="form-control" id="barang" name="price_list_id">
                                             @foreach ($items as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -73,20 +60,42 @@
                                 <div class="form-group row">
                                     <label for="servis" class="col-sm-2 col-form-label">Servis</label>
                                     <div class="col-sm-4">
-                                        <select class="form-control" id="servis" name="service">
+                                        <select class="form-control" id="servis" name="service_type_id">
                                             @foreach ($services as $service)
-                                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            <option value="{{ $service->id }}">{{ $service->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
+                                    <label for="voucher" class="col-sm-2 col-form-label">Discount</label>
                                     <div class="col-sm-4">
-                                        <select class="form-control" id="kategori" name="category">
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <select class="form-control" id="voucher" name="voucher">
+                                            <option value="0">No Voucher</option>
+                                            @foreach ($userVouchers as $voucher)
+                                            <option value="{{ $voucher->id }}">{{ $voucher->voucher->code }} - {{ $voucher->voucher->discount_value }}% off</option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="delivery_service" class="col-sm-2 col-form-label">Delivery Service</label>
+                                    <div class="col-sm-4">
+                                        <input type="checkbox" id="delivery_service" name="delivery_service" data-toggle="delivery-charge"> Delivery Service
+                                    </div>
+                                </div>
+                                <div class="form-group row" id="delivery-charge" style="display: none;">
+                                    <label for="delivery_charge" class="col-sm-2 col-form-label">Delivery Charge</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="delivery_charge" name="delivery_charge" value="15000" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="payment_amount" class="col-sm-2 col-form-label">Payment Amount</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" id="payment_amount" name="payment_amount">
+                                            <option value="cod">Cash on Delivery</option>
+                                            <option value="transfer">Transfer</option>
                                         </select>
                                     </div>
                                 </div>
@@ -94,17 +103,17 @@
                                     <label for="banyak" class="col-sm-2 col-form-label">Banyak</label>
                                     <div class="col-sm-2">
                                         <div class="input-group">
-                                            <input type="number" id="quantity" name="quantity"
-                                                class="form-control input-number" value="1" min="1"
-                                                max="100">
+                                            <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" max="100">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group-row">
                                     <div class="col-sm-4">
-                                        <button type="submit" id="tambah-transaksi" class="btn btn-primary">Tambah
-                                            Transaksi</button>
+                                        <button type="submit" id="tambah-transaksi" class="btn btn-primary">Tambah Transaksi</button>
                                     </div>
                                 </div>
                             </form>
+
                             <table id="tbl-input-transaksi" class="table mt-2 dt-responsive nowrap" style="width: 100%">
                                 <thead class="thead-light">
                                     <tr>
@@ -114,12 +123,15 @@
                                         <th>Kategori</th>
                                         <th>Banyak</th>
                                         <th>Harga</th>
+                                        <th>Pengiriman</th>
+                                        <th>Biaya Pengiriman</th>
+                                        <th>Total</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($sessionTransaction))
-                                        @foreach ($sessionTransaction as $transaction)
+                                    @if (isset($member_transaction))
+                                        @foreach ($member_transaction as $transaction)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $transaction['itemName'] }}</td>
@@ -127,16 +139,19 @@
                                                 <td>{{ $transaction['categoryName'] }}</td>
                                                 <td>{{ $transaction['quantity'] }}</td>
                                                 <td>{{ $transaction['subTotal'] }}</td>
+                                                <td>{{ $transaction['delivery_service'] ? 'Ya' : 'Tidak' }}</td>
+                                                <td>{{ $transaction['delivery_charge'] }}</td>
+                                                <td>{{ $transaction['subTotal'] + ($transaction['delivery_service'] ? $transaction['delivery_charge'] : 15000) }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.transactions.session.destroy', ['rowId' => $transaction['rowId']]) }}"
-                                                        class="btn btn-danger">Hapus</a>
+                                                    <a href="{{ route('member.transactions.session.destroy', ['rowId' => $transaction['rowId']]) }}" class="btn btn-danger">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @endif
                                 </tbody>
                             </table>
-                            @if (isset($sessionTransaction))
+
+                            @if (isset($member_transaction))
                                 <button id="btn-bayar" class="btn btn-success" data-toggle="modal"
                                     data-target="#paymentModal">Bayar</button>
                             @endif
@@ -149,7 +164,7 @@
 @endsection
 
 @section('modals')
-    <x-admin.modals.payment-modal :$serviceTypes :vouchers="$vouchers ?? []" :totalPrice="$totalPrice ?? '0'" :show="isset($sessionTransaction)" />
+    <x-member.modals.payment-modal :$serviceTypes :vouchers="$vouchers ?? []" :totalPrice="$totalPrice ?? '0'" :show="isset($sessionTransaction)" />
 @endsection
 
 @section('scripts')
@@ -175,3 +190,21 @@
         </script>
     @endif
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deliveryServiceCheckbox = document.getElementById('delivery_service');
+        const deliveryChargeSection = document.getElementById('delivery_charge_section');
+        const deliveryChargeInput = document.getElementById('delivery_charge');
+
+        deliveryServiceCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                deliveryChargeSection.style.display = 'flex';
+                deliveryChargeInput.value = '15000';
+
+            } else {
+                deliveryChargeSection.style.display = 'none';
+                deliveryChargeInput.value = '0';
+            }
+        });
+    });
+</script>

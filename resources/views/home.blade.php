@@ -125,7 +125,7 @@
         </div>
       </div>
       <div class="text-center">
-         <a href="/register" class="btn-get-started scrollto">Mulai Jadi Member</a>
+         <a href="/register" class="btn-get-started btn-outline-primary scrollto">Mulai Jadi Member</a>
       </div>
 
       <div class="row icon-boxes">
@@ -157,7 +157,7 @@
           <div class="icon-box">
             <div class="icon"><i class="ri-discount-percent-fill"></i></div>
             <h4 class="title"><a href="">Murah</a></h4>
-            <p class="description">Murah tapi ga murahan? RWASH AJA!!!</p>
+            <p class="description">Mau nyuci murah tapi ga murahan? RWASH AJA!!!</p>
           </div>
         </div>
 
@@ -223,7 +223,7 @@
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
-              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="2" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="2" class="purecounter"></span>
               <p>Tahun Pengalaman Kami</p>
             </div>
           </div>
@@ -353,8 +353,9 @@
                 </svg>
                 <i class="ri-truck-fill"></i>
               </div>
-              <h4><a href="">Pengantaran dan Pengambilan</a></h4>
-              <p>Di RWash laundry, kami menawarkan layanan pengantaran dan pengambilan pakaian dari dan ke lokasi pelanggan untuk kenyamanan tambahan.</p>
+              <h4><a href="">Layanan Konsultasi dan Edukasi</a></h4>
+              <p>Di RWash laundry, Kami dapat memberikan saran perawatan untuk pakaian dan tekstil, termasuk panduan mencuci dan merawat agar tahan lama dan berkualitas.
+              </p>
             </div>
           </div>
 
@@ -380,7 +381,7 @@
                 <i class="ri-file-list-3-fill"></i>
               </div>
               <h4><a href="">Pencucian Spesifik</a></h4>
-              <p>di RWash Laundry, menyediakan pencucian khusus untuk item tertentu seperti karpet, tirai, selimut, dan pakaian berbahan khusus.</p>
+              <p>Di RWash Laundry, menyediakan pencucian khusus untuk item tertentu seperti karpet, tirai, selimut, dan pakaian berbahan khusus.</p>
             </div>
           </div>
 
@@ -412,7 +413,7 @@
                 <li>Prioritas</li>
                 <li>Voucher Khusus Member</li>
                 <li>Pelayanan Khusus Member</li>
-                <li>Gratis Ongkir Setiap Akhir Bulan</li>
+                <li>Gratis Biaya Priotias Setiap Bulan</li>
               </ul>
               <div class="btn-wrap">
                 <a href="/register" class="btn-buy">Gabung Sekarang</a>
@@ -449,15 +450,6 @@
               </div>
             </li>
 
-            <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">"Rumah saya jauh, pasti mahal biaya ongkosnya."<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
-                <p>
-                    Ketika kakak pertama kali melakukan transaksi di RWash, kakak bakalan dapet potongan ongkir lohhh! Kapan lagi coba?~~
-                </p>
-              </div>
-            </li>
-
             <li data-aos="fade-up" data-aos-delay="200">
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">"Pelayanannya bagus ga? Percuma aja kalau tempat bagus tapi pelayanan nihil.."<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
@@ -484,6 +476,15 @@
                 </p>
               </div>
             </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">"Rumah saya jauh, pasti mahal biaya ongkosnya."<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                  <p>
+                      Ketika kakak pertama kali melakukan transaksi di RWash, kakak bakalan dapet potongan ongkir lohhh! Kapan lagi coba?~~
+                  </p>
+                </div>
+              </li>
 
           </ul>
         </div>
@@ -521,7 +522,7 @@
               </div>
 
               <div class="phone">
-                <i class="bi bi-phone"></i>
+                <a href="https://wa.me/628699669690"><i class="bi bi-phone"></i></a>
                 <h4>Call:</h4>
                 <p>+628 699669690</p>
               </div>
@@ -530,34 +531,7 @@
 
           </div>
 
-          <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="" method="post" role="form" class="php-email-form">
-                {{ csrf_field() }}
-
-              <div class="row gy-2 gx-md-3">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nama Kamu" required>
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email Kamu" required>
-                </div>
-                <div class="form-group col-12">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group col-12">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Pesan" required></textarea>
-                </div>
-                <div class="my-3 col-12">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Pesan kamu telah kami terima, Makasihhh!!</div>
-                </div>
-                <div class="text-center col-12"><button type="submit">Kirim</button></div>
-              </div>
-            </form>
-
-          </div>
 
         </div>
 

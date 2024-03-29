@@ -15,11 +15,6 @@ class TestimonialSeeder extends Seeder
     {
         $complaintSuggestions = [
             [
-                'body' => 'Pelayanan laundry sangat cepat dan hasilnya sangat memuaskan. Sangat direkomendasikan!',
-                'type' => '2',
-                'user_id' => 7,
-            ],
-            [
                 'body' => 'Saya merasa harga yang ditawarkan sangat mahal untuk kualitas layanan yang diberikan.',
                 'type' => '1',
                 'user_id' => 2,
@@ -30,14 +25,19 @@ class TestimonialSeeder extends Seeder
                 'user_id' => 3,
             ],
             [
+                'body' => 'Harga laundry Anda sangat terjangkau dan hasilnya memuaskan. Terima kasih atas layanan yang baik!',
+                'type' => '2',
+                'user_id' => 4,
+            ],
+            [
                 'body' => 'Pelayanan laundry Anda sangat memuaskan! Pakaian saya bersih dan wangi setelah dicuci. Sangat direkomendasikan!',
                 'type' => '2',
                 'user_id' => 5,
             ],
             [
-                'body' => 'Harga laundry Anda sangat terjangkau dan hasilnya memuaskan. Terima kasih atas layanan yang baik!',
+                'body' => 'Pelayanan laundry sangat cepat dan hasilnya sangat memuaskan. Sangat direkomendasikan!',
                 'type' => '2',
-                'user_id' => 4,
+                'user_id' => 7,
             ],
         ];
 

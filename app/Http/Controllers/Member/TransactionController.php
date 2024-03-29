@@ -161,9 +161,9 @@ class TransactionController extends Controller
      * @param  string|int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function show(int $id): JsonResponse
+    public function show(Transaction $transaction): View
     {
-        $transaction = Transaction::findOrFail($id)->load([
+        $transaction = $transaction->load([
             'transaction_details',
             'transaction_details.price_list',
             'transaction_details.price_list.item',
@@ -172,7 +172,7 @@ class TransactionController extends Controller
             'service_type',
         ]);
 
-        return response()->json($transaction);
+        return view('member.transaction_show', compact('transaction'));
     }
     public function update(Request $request, MemberTransaction $memberTransaction)
     {

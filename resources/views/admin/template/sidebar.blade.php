@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.expenses.pdf') }}" class="nav-link">
+                        <a href="{{ route('admin.expenses.pdf') }}" class="nav-link" target="_blank">
                             <i class="nav-icon fas fa-file-pdf"></i>
                             <p>&nbsp;&nbsp;Laporan Pengeluaran</p>
                         </a>

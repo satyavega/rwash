@@ -32,7 +32,7 @@
                 <div class="row my-2 mx-1 justify-content-center">
                     <div class="col-6">
                         <table class="table table-striped">
-                            <thead style="background-color:#84B0CA ;" class="text-white">
+                            <thead style="background-color:#84B0CA;" class="text-white">
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col" style="width: 100px;">Tanggal</th>
@@ -42,17 +42,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $total_expenses = 0; // Inisialisasi total pengeluaran
+                                @endphp
                                 @foreach ($expenses as $expense)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $expense->date }}</td>
                                     <td>{{ $expense->category ? $expense->category->name : 'No Category' }}</td>
                                     <td>{{ $expense->description }}</td>
-                                    <td> Rp.{{ $expense->total_amount }}</td>
+                                    <td> Rp. {{ number_format($expense->total_amount, 0, ',', '.') }}</td>
+                                    @php
+                                    $total_expenses += $expense->total_amount; // Menambahkan total pengeluaran
+                                    @endphp
                                 </tr>
                                 @endforeach
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>Total Pengeluaran : </strong></td>
+                                    <td><strong>Rp. {{ number_format($total_expenses, 0, ',', '.') }}</strong></td>
+                                </tr>
                             </tbody>
                         </table>
+
                     </div>
                 </div>
                 </div>

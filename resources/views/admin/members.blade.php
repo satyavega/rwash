@@ -29,7 +29,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>No</th>
-                                        <th>ID Member</th>
+                                        {{-- <th>ID Member</th> --}}
                                         <th>Nama Member</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Alamat</th>
@@ -41,7 +41,7 @@
                                     @foreach ($members as $member)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $member->id }}</td>
+                                            {{-- <td>{{ $member->id }}</td> --}}
                                             <td>{{ mb_convert_case($member->name, MB_CASE_TITLE, "UTF-8") }}</td>
                                             <td>
                                                 @if ($member->gender == 'laki-laki')

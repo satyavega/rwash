@@ -104,6 +104,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('vendor/adminlte/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('js/myscript.js') }}"></script>
+    <script type="module" src="{{ asset('js/firebase-init.js') }}"></script>
 
     @yield('scripts')
 

@@ -15,6 +15,7 @@
         "vite": "^4.3.9"
     },
     "dependencies": {
+        "firebase": "^10.12.1",
         "is-svg": "^4.4.0",
         "ssri": "^8.0.1",
         "sweetalert": "^2.1.2"
